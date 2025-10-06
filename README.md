@@ -126,11 +126,18 @@
   - `--targets` lista de alvos separados por vírgula (ex.: `CHS,FKS`)
   - `--targets-file` arquivo com um alvo por linha
   - `--plots` tipos de gráficos (padrão: `violin,box`)
-  - `--plot-outdir` diretório das figuras (padrão: `docking_results/plots`)
+- `--plot-outdir` diretório das figuras (padrão: `docking_results/plots`)
   - Observação: ΔΔG = ΔG(target, ligand) − ΔG(ref_target, ligand); valores negativos indicam maior seletividade para o alvo em relação ao de referência.
 
 Dependência para gráficos (opcional):
 - `matplotlib` (instale via `pip install matplotlib` ou pacote da distro).
+
+**Notebook de Exemplo**
+- Caminho: `notebooks/Docking_Analysis_Example.ipynb`
+- Conteúdo: ranking dos melhores ligantes por alvo, distribuições (violin/box) e heatmap ligantes × alvos.
+- Para executar:
+  - `pip install pandas matplotlib seaborn jupyter`
+  - `jupyter lab` (ou `jupyter notebook`) e abra o arquivo acima.
 
 **Como Citar (Sugestão)**
 - AutoDock Vina: Trott, O.; Olson, A. J. J. Comput. Chem. 2010.
