@@ -105,8 +105,24 @@
   - Calcular ΔΔG seletividade contra um alvo de referência.
   - Preparar planilha para priorização (ex.: MCDA_template.xlsx).
 
+**Pós‑processamento (script incluso)**
+- Arquivo: `postprocess_docking.py`
+- Funções:
+  - Ordena o CSV de resumo por afinidade (mais negativa primeiro).
+  - Calcula ΔΔG de seletividade por par (alvo × ligante) usando um alvo de referência.
+  - Gera um resumo por ligante com o melhor alvo e ΔΔG vs referência.
+- Uso típico:
+  - `./postprocess_docking.py` (gera `docking_results/summary_sorted.csv`)
+  - `./postprocess_docking.py --ref-target CHS` (adiciona `summary_ddg.csv` e `ligand_selectivity_summary.csv`)
+- Opções:
+  - `--input` CSV de entrada (padrão: `docking_results/summary_affinities.csv`)
+  - `--out-sorted` CSV ordenado (padrão: `docking_results/summary_sorted.csv`)
+  - `--ref-target` nome do alvo de referência (não‑alvo)
+  - `--out-ddg` CSV de ΔΔG (padrão: `docking_results/summary_ddg.csv`)
+  - `--out-ligand-summary` resumo por ligante (padrão: `docking_results/ligand_selectivity_summary.csv`)
+  - Observação: ΔΔG = ΔG(target, ligand) − ΔG(ref_target, ligand); valores negativos indicam maior seletividade para o alvo em relação ao de referência.
+
 **Como Citar (Sugestão)**
 - AutoDock Vina: Trott, O.; Olson, A. J. J. Comput. Chem. 2010.
 - Open Babel: O’Boyle, N. M. et al. J. Cheminform. 2011.
 - MGLTools/ADT: Sanner, M. F. J. Mol. Graph. Model. 1999; Morris, G. M. et al. J. Comput. Chem. 2009.
-
