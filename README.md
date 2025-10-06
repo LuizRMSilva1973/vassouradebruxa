@@ -48,11 +48,13 @@
 - Opções principais:
   - `-e, --exhaustiveness N` ajusta `--exhaustiveness` do Vina (padrão: 16)
   - `-n, --num-modes N` ajusta `--num_modes` do Vina (padrão: 9)
+  - `-N, --topn N` gera automaticamente Top‑N por alvo ao finalizar (padrão: 10)
+  - `--no-topn` desativa a geração automática de Top‑N
   - `-t, --threads N` número de jobs paralelos (GNU parallel)
   - `--cpu N` define `--cpu` do Vina para cada job
   - `-h, --help` ajuda
 - Variáveis de ambiente (alternativas às flags):
-  - `WORKDIR`, `EXHAUSTIVENESS`, `NUM_MODES`, `THREADS`, `VINA_CPU`
+  - `WORKDIR`, `EXHAUSTIVENESS`, `NUM_MODES`, `THREADS`, `VINA_CPU`, `TOPN_N`, `GENERATE_TOPN`
 - Exemplos:
   - Sequencial: `./run_docking.sh -e 24 -n 12 --cpu 8`
   - Paralelo (4 jobs × 2 CPUs por job): `./run_docking.sh -e 24 -n 12 -t 4 --cpu 2`

@@ -23,6 +23,8 @@ EXHAUSTIVENESS=${EXHAUSTIVENESS:-16}
 THREADS=${THREADS:-}
 VINA_CPU=${VINA_CPU:-}
 NUM_MODES=${NUM_MODES:-9}
+TOPN_N=${TOPN_N:-10}
+GENERATE_TOPN=${GENERATE_TOPN:-1}
 
 usage() {
   cat <<EOF
@@ -33,6 +35,8 @@ Opções:
   -t, --threads N          Número de jobs paralelos (GNU parallel). Se ausente, auto.
   --cpu N              Passa --cpu N para o Vina (por job).
   -n, --num-modes N        Define --num_modes do Vina (padrão: ${NUM_MODES})
+  -N, --topn N             Gera Top-N por alvo após o docking (padrão: ${TOPN_N})
+      --no-topn            Desativa a geração automática de Top-N
   -h, --help               Mostra esta ajuda e sai.
 
 Ambiente:
@@ -41,6 +45,8 @@ Ambiente:
   THREADS           Igual a --threads
   VINA_CPU          Igual a --cpu
   NUM_MODES         Igual a --num-modes
+  TOPN_N            Igual a --topn
+  GENERATE_TOPN     1 para habilitar (padrão), 0 para desabilitar
 
 Estrutura esperada:
   ${WORKDIR}/targets   (PDBs + .box)
@@ -64,6 +70,11 @@ while [[ $# -gt 0 ]]; do
     -n|--num-modes)
       [[ $# -ge 2 ]] || { echo "Faltou valor para $1"; exit 2; }
       NUM_MODES="$2"; shift 2 ;;
+    -N|--topn)
+      [[ $# -ge 2 ]] || { echo "Faltou valor para $1"; exit 2; }
+      TOPN_N="$2"; GENERATE_TOPN=1; shift 2 ;;
+    --no-topn)
+      GENERATE_TOPN=0; shift ;;
     -h|--help)
       usage; exit 0 ;;
     *)
@@ -253,3 +264,30 @@ else
 fi
 
 echo ">>> Concluído. Resumo em: ${SUMMARY}"
+
+# 11) Pós-processamento opcional: Top-N por alvo
+if [[ "${GENERATE_TOPN}" == "1" ]]; then
+  echo ">>> Gerando Top-${TOPN_N} por alvo (se script disponível)..."
+  script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  candidates=(
+    "${script_dir}/topn_by_target.py"
+    "${WORKDIR}/topn_by_target.py"
+  )
+  ran=0
+  for s in "${candidates[@]}"; do
+    if [[ -f "${s}" ]]; then
+      if command -v python3 >/dev/null 2>&1; then
+        python3 "${s}" --input "${SUMMARY}" --outdir "${OUTDIR}/topN_by_target" --top "${TOPN_N}" || echo "[WARN] Falha ao gerar Top-N com ${s}"
+        ran=1
+        break
+      else
+        echo "[WARN] python3 não encontrado; pulando Top-N."
+        ran=1
+        break
+      fi
+    fi
+  done
+  if [[ "${ran}" -eq 0 ]]; then
+    echo "[INFO] Script topn_by_target.py não encontrado; pulando Top-N."
+  fi
+fi
