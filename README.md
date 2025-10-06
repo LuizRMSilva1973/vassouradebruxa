@@ -111,16 +111,26 @@
   - Ordena o CSV de resumo por afinidade (mais negativa primeiro).
   - Calcula ΔΔG de seletividade por par (alvo × ligante) usando um alvo de referência.
   - Gera um resumo por ligante com o melhor alvo e ΔΔG vs referência.
+  - Filtra por lista de alvos (`--targets` ou `--targets-file`).
+  - Gera gráficos simples (PNG) de afinidades por alvo: violin e boxplot.
 - Uso típico:
   - `./postprocess_docking.py` (gera `docking_results/summary_sorted.csv`)
   - `./postprocess_docking.py --ref-target CHS` (adiciona `summary_ddg.csv` e `ligand_selectivity_summary.csv`)
+  - `./postprocess_docking.py --targets CHS,FKS` (limita análises/gráficos a essa lista)
 - Opções:
   - `--input` CSV de entrada (padrão: `docking_results/summary_affinities.csv`)
   - `--out-sorted` CSV ordenado (padrão: `docking_results/summary_sorted.csv`)
   - `--ref-target` nome do alvo de referência (não‑alvo)
   - `--out-ddg` CSV de ΔΔG (padrão: `docking_results/summary_ddg.csv`)
   - `--out-ligand-summary` resumo por ligante (padrão: `docking_results/ligand_selectivity_summary.csv`)
+  - `--targets` lista de alvos separados por vírgula (ex.: `CHS,FKS`)
+  - `--targets-file` arquivo com um alvo por linha
+  - `--plots` tipos de gráficos (padrão: `violin,box`)
+  - `--plot-outdir` diretório das figuras (padrão: `docking_results/plots`)
   - Observação: ΔΔG = ΔG(target, ligand) − ΔG(ref_target, ligand); valores negativos indicam maior seletividade para o alvo em relação ao de referência.
+
+Dependência para gráficos (opcional):
+- `matplotlib` (instale via `pip install matplotlib` ou pacote da distro).
 
 **Como Citar (Sugestão)**
 - AutoDock Vina: Trott, O.; Olson, A. J. J. Comput. Chem. 2010.

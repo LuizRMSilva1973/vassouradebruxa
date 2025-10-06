@@ -4,6 +4,11 @@ import csv
 from collections import defaultdict
 from pathlib import Path
 
+# Backend não interativo para salvar figuras
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+
 
 def parse_float(val):
     try:
@@ -33,15 +38,39 @@ def write_csv(path, fieldnames, rows):
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Pós-processamento do resumo do Vina: ordenação e ΔΔG de seletividade.")
+    ap = argparse.ArgumentParser(description="Pós-processamento do resumo do Vina: ordenação, filtros e ΔΔG de seletividade, com gráficos.")
     ap.add_argument("--input", default="docking_results/summary_affinities.csv", help="CSV de entrada (resumo do docking)")
     ap.add_argument("--out-sorted", default="docking_results/summary_sorted.csv", help="CSV ordenado por melhor afinidade (ascendente)")
     ap.add_argument("--ref-target", default=None, help="Nome do alvo de referência para ΔΔG (não-alvo)")
     ap.add_argument("--out-ddg", default="docking_results/summary_ddg.csv", help="CSV com colunas de ΔΔG vs alvo de referência")
     ap.add_argument("--out-ligand-summary", default="docking_results/ligand_selectivity_summary.csv", help="Resumo por ligante (melhor alvo, ΔΔG vs referência)")
+
+    # Filtros
+    ap.add_argument("--targets", default=None, help="Lista de alvos a incluir (separados por vírgula). Ex.: CHS,FKS")
+    ap.add_argument("--targets-file", default=None, help="Arquivo com um alvo por linha para incluir")
+
+    # Gráficos
+    ap.add_argument("--plot-outdir", default="docking_results/plots", help="Diretório para salvar figuras")
+    ap.add_argument("--plots", default="violin,box", help="Tipos de gráficos: violin,box (separar por vírgula)")
     args = ap.parse_args()
 
     rows, cols = read_summary(args.input)
+
+    # Aplicar filtros de alvos, se fornecidos
+    allowed_targets = None
+    if args.targets or args.targets_file:
+        allowed_targets = set()
+        if args.targets:
+            allowed_targets.update([t.strip() for t in args.targets.split(',') if t.strip()])
+        if args.targets_file:
+            p = Path(args.targets_file)
+            if p.exists():
+                for line in p.read_text(encoding="utf-8").splitlines():
+                    line = line.strip()
+                    if line:
+                        allowed_targets.add(line)
+        if allowed_targets:
+            rows = [d for d in rows if d.get("target") in allowed_targets]
 
     # Ordenar por afinidade (mais negativa primeiro). Colocar NAs no final.
     rows_sorted = sorted(
@@ -126,13 +155,50 @@ def main():
             })
         write_csv(args.out_ligand_summary, lig_fields, lig_rows)
 
+    # Gráficos: afinidade por alvo (violin/box)
+    plot_kinds = {k.strip().lower() for k in args.plots.split(',') if k.strip()}
+    if plot_kinds:
+        # Agrupar por alvo
+        by_target = defaultdict(list)
+        for d in rows:
+            val = d.get("best_affinity_kcal_per_mol_num")
+            if val is not None:
+                by_target[d.get("target")].append(val)
+
+        # Ordenar alvos por mediana (opcional) ou alfabeticamente para estabilidade
+        targets = sorted(by_target.keys())
+        data = [by_target[t] for t in targets]
+        outdir = Path(args.plot_outdir)
+        outdir.mkdir(parents=True, exist_ok=True)
+
+        if data and any(len(lst) for lst in data):
+            if 'violin' in plot_kinds:
+                plt.figure(figsize=(10, 5))
+                parts = plt.violinplot(data, showmeans=True, showmedians=True)
+                plt.xticks(range(1, len(targets)+1), targets, rotation=45, ha='right')
+                plt.ylabel('Afinidade (kcal/mol) — valores mais negativos são melhores')
+                plt.title('Distribuição de afinidades por alvo (Violin)')
+                plt.tight_layout()
+                plt.savefig(outdir / 'affinity_by_target_violin.png', dpi=150)
+                plt.close()
+            if 'box' in plot_kinds:
+                plt.figure(figsize=(10, 5))
+                plt.boxplot(data, showmeans=True)
+                plt.xticks(range(1, len(targets)+1), targets, rotation=45, ha='right')
+                plt.ylabel('Afinidade (kcal/mol) — valores mais negativos são melhores')
+                plt.title('Distribuição de afinidades por alvo (Boxplot)')
+                plt.tight_layout()
+                plt.savefig(outdir / 'affinity_by_target_box.png', dpi=150)
+                plt.close()
+
     print("Feito:")
     print(f" - CSV ordenado: {args.out_sorted}")
     if args.ref_target:
         print(f" - CSV ΔΔG: {args.out_ddg}")
         print(f" - Resumo por ligante: {args.out_ligand_summary}")
+    if plot_kinds:
+        print(f" - Gráficos em: {args.plot_outdir}")
 
 
 if __name__ == "__main__":
     main()
-
