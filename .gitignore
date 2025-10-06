@@ -1,0 +1,23 @@
+# Artefatos grandes e documentos
+*.pdf
+*.docx
+*.odt
+*.xlsx
+*.tar.gz
+
+# Ambientes e caches
+__pycache__/
+.venv/
+venv/
+
+# Resultados e arquivos gerados
+docking_results/
+md_results/
+
+# Dados volumosos (ajuste conforme necessário)
+targets/*.pdb
+ligands/*
+
+# Sistemas
+.DS_Store
+Thumbs.db
