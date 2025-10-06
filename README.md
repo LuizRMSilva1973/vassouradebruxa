@@ -139,6 +139,20 @@ Dependência para gráficos (opcional):
   - `pip install pandas matplotlib seaborn jupyter`
   - `jupyter lab` (ou `jupyter notebook`) e abra o arquivo acima.
 
+**Exportar Top‑N por Alvo**
+- Arquivo: `topn_by_target.py`
+- Função: gera um CSV por alvo com os Top‑N ligantes (menor ΔG) e um `index.csv` com os caminhos.
+- Uso:
+  - `./topn_by_target.py --top 10`
+  - Saída: `docking_results/topN_by_target/top10_<ALVO>.csv` e `index.csv`
+- Opções:
+  - `--input` CSV de entrada (padrão: `docking_results/summary_affinities.csv`)
+  - `--outdir` diretório de saída (padrão: `docking_results/topN_by_target`)
+  - `--top` N de ligantes (padrão: 10)
+  - `--targets` lista de alvos, ex.: `CHS,FKS`
+  - `--targets-file` arquivo com um alvo por linha
+  - `--include-na` inclui entradas sem afinidade numérica (NA) ao final (sem rank)
+
 **Como Citar (Sugestão)**
 - AutoDock Vina: Trott, O.; Olson, A. J. J. Comput. Chem. 2010.
 - Open Babel: O’Boyle, N. M. et al. J. Cheminform. 2011.
