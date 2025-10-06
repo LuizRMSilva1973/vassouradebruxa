@@ -24,12 +24,18 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y shellcheck
 
-      - name: Shellcheck run_docking.sh (non-blocking)
-        run: shellcheck run_docking.sh || true
+      - name: Bash syntax check
+        run: |
+          bash -n run_docking.sh
+          bash -n install_in_silico.sh
 
-      - name: Ruff lint (non-blocking)
-        run: ruff check --output-format=github --exit-zero topn_by_target.py
+      - name: Shellcheck scripts (blocking)
+        run: |
+          shellcheck run_docking.sh
+          shellcheck install_in_silico.sh
+
+      - name: Ruff lint (blocking)
+        run: ruff check --output-format=github topn_by_target.py
 
       - name: Python syntax check
         run: python -m py_compile topn_by_target.py
-
