@@ -1,0 +1,12 @@
+Sugestões para definir a caixa de docking (FKS1):
+
+1) Se usar modelo AlphaFold (P38631) ou a estrutura 7XE4/8WL6 como referência,
+   selecione o núcleo catalítico (domínio GT) onde se localiza o canal de polimerização.
+2) Se houver co-cristal (não usual para echinocandinas), use --het LIG no compute_box.py.
+3) Alternativa prática: identifique resíduos do "hot spot 1" e "hot spot 2" descritos em literatura
+   de resistência a echinocandinas (ex.: regiões ao redor de Phe641/Ser645 em Candida spp.; 
+   ajuste conforme alinhamento para Saccharomyces/Cercospora).
+4) Use margem 4–6 Å e evite caixas > 30 Å por dimensão.
+
+Use:
+  python3 tools/compute_box.py --pdb targets/FKS.pdb --res A:xxx,A:yyy --margin 4.0 --out targets/FKS.box

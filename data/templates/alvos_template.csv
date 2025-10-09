@@ -1,0 +1,7 @@
+alvo,id_proteico,isoforma,genoma_ref,comprimento_aa,dominios_pfams,helices_tm,motivos_cataliticos,cofatores,comentarios,prioridade
+CHS, , , , ,PF01644|PF03142, ,QRRRW|DXH, , ,Alta
+FKS, , , , ,FKS1_family, ,motivos conservados FKS, , ,Alta
+AGS, , , , ,GT_family, , , , ,Media
+GEL/GAS, , , , ,GEL|GAS, , , , ,Suporte
+CDA, , , , ,CDA, ,HX(4)H|RDP, , ,Suporte
+
