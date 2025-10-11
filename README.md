@@ -142,6 +142,34 @@ Notas de modelagem:
 - Calibrar `config/scoring.yaml` após o lote robusto; revisar `docs/CRITERIOS_GO_NO_GO.md`.
 - Preencher templates em `data/templates/` com IDs, SMILES e metadados.
 
+## Plano de Pesquisa e Análise
+- Objetivo: identificar candidatos para controle da “vassoura‑de‑bruxa” (C. theobromae) visando alvos de parede celular (principalmente CHS e FKS), usando triagem in silico e critérios multiobjetivo com foco em eficácia e mobilidade xilemática.
+- Alvos e priorização:
+  - CHS (quitina‑sintase): prioridade pelas evidências de alvo clássico de UDP‑GlcNAc análogos (nikkomicina/polioxina) e boa perspectiva de seletividade.
+  - FKS (β‑1,3‑glucano‑sintase): prioridade alta como alvo validado por echinocandinas/triterpenoides (ex.: ibrexafungerp), com atenção a propriedades para XyMove.
+- Fluxo (alto nível):
+  1) Curadoria de alvos e modelagem (AlphaFold/ColabFold quando necessário) + definição da caixa de docking no sítio ativo.
+  2) Preparação dos ligantes (SDF/SMILES → PDBQT) e cálculo de propriedades (MW, logP/logD, TPSA, carga, HBD/HBA).
+  3) Docking (AutoDock Vina) com parâmetros reprodutíveis e logs por par alvo×ligante.
+  4) Pós‑processamento e seleção: ΔG, ΔΔG vs referência, Top‑N por alvo, e score multiobjetivo com `config/scoring.yaml`.
+  5) Relato e decisão: aplicar `docs/CRITERIOS_GO_NO_GO.md` para classificar Go/Consider/No‑Go.
+  6) Planejamento de validação experimental (MIC in vitro, depois tecido/estacas), usando quitosana/nanoquitosana como controle positivo.
+- Score multiobjetivo: combina afinidade (ΔG), seletividade (ΔΔG), heurística de mobilidade xilemática (XyMove) e penalidades (PAINS/reatividade), com limiares configuráveis (ver `config/scoring.yaml`).
+- Reprodutibilidade: scripts versionados; parâmetros e caixas registrados em `targets/*.box`; seeds e logs do Vina preservados.
+
+Referências rápidas
+- Plano detalhado CHS (modelagem + docking): `docs/CHS_DOCKING_PLAN.md`
+- Workflow do piloto e prioridades de execução: `docs/WORKFLOW_PILOT.md`, `docs/PRIORIDADES.md`
+- Critérios de decisão: `docs/CRITERIOS_GO_NO_GO.md`
+
+Estado e Progresso
+- Docking validado (FKS×nikkomicina Z): ΔG ≈ -4.81 kcal/mol (rodada rápida; recomenda‑se exaustividade maior para ranking definitivo).
+- Próximo: modelar CHS via ColabFold (guia em `notebooks/CHS_ColabFold.md`), preparar `targets/CHS.pdbqt`/`targets/CHS.box` e rodar CHS×{nikkomicinaZ, polioxinaD}.
+- Percentual de avanço atual:
+  - Plano de Tarefas (docs/PLANO_TAREFAS.md): 55.6%
+  - Checklist (docs/CHECKLIST_STATUS.md): 41.7%
+  - Progresso geral (média simples): ~48.7%
+
 ## Reprodutibilidade e Dicas
 - Logs por par em `docking_results/<ALVO>/<LIGANTE>/*.log` com seed reportada.
 - `run_docking.sh` reusa PDBQT existentes e converte apenas o que falta; garante sanitização de receptores.
@@ -151,4 +179,3 @@ Notas de modelagem:
 - AutoDock Vina 1.2.x
 - OpenBabel
 - MGLTools (opcional)
-

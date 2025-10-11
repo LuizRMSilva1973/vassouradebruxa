@@ -298,7 +298,8 @@ fi
 echo ">>> Iniciando docking em lote... (exhaustiveness=${EXHAUSTIVENESS}, num_modes=${NUM_MODES}${THREADS:+, threads=${THREADS}}${VINA_CPU:+, vina_cpu=${VINA_CPU}})"
 if command -v parallel >/dev/null 2>&1; then
   export -f dock_pair read_box
-  export OUTDIR SUMMARY EXHAUSTIVENESS VINA_CPU
+  # Exportar variáveis usadas dentro de funções quando executadas via GNU parallel
+  export OUTDIR SUMMARY EXHAUSTIVENESS NUM_MODES VINA_CPU TARGETS_DIR LIGANDS_DIR WORKDIR
   if [[ -n "${THREADS}" ]]; then
     parallel -j "${THREADS}" --will-cite dock_pair {1} {2} ::: "${TARGETS_PDBQT[@]}" ::: "${LIGANDS_PDBQT[@]}"
   else

@@ -6,9 +6,10 @@ weights:
   alerts: 0.10             # penalidades por PAINS/reatividade
 
 constraints:
-  min_affinity_kcal_per_mol: -7.0
+  # Piloto (afrouxado para triagem inicial). Ajustar pós-novo docking.
+  min_affinity_kcal_per_mol: -5.0
   min_ddg_kcal_per_mol: -1.0
-  min_xymove: 0.6
+  min_xymove: 0.55
   max_sa: 6.0
 
 penalties:
@@ -17,4 +18,3 @@ penalties:
 
 notes: |
   Rascunho inicial. Ajustar após o primeiro lote de docking e análise de sensibilidade.
-
