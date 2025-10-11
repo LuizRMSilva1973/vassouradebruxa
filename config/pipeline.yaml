@@ -11,7 +11,7 @@ score:
   ref_target: FKS_8WL6
 
 consensus:
-  enabled: false   # set true to use consensus (Vina + SMINA)
+  enabled: true   # use consensus (Vina + SMINA)
 
 pareto:
   enabled: true
@@ -20,4 +20,3 @@ pareto:
 
 duckdb:
   path: data/results.duckdb
-
