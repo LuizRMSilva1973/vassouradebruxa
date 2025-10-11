@@ -1,0 +1,9 @@
+# Links úteis para obter sequência e estrutura da FKS1 (S. cerevisiae)
+UniProt (P38631): https://www.uniprot.org/uniprotkb/P38631/entry
+AlphaFold (P38631): https://alphafold.ebi.ac.uk/entry/P38631
+SWISS-MODEL: https://swissmodel.expasy.org/repository/uniprot/P38631
+RCSB PDB (7XE4): https://www.rcsb.org/structure/7XE4
+RCSB PDB (8WL6): https://www.rcsb.org/structure/8WL6
+
+# Dica: baixe a sequência FASTA a partir do UniProt e/ou o modelo PDB do AlphaFold.
+# Salve como: targets/FKS.pdb (modelo) e targets/FKS.fasta (sequência) no seu repo.

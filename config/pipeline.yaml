@@ -1,0 +1,22 @@
+vina:
+  exhaustiveness: 16
+  num_modes: 9
+  threads: 0   # 0 = auto; use -t N to override
+  cpu: 1
+
+postprocess:
+  ref_target: FKS_8WL6
+
+score:
+  ref_target: FKS_8WL6
+
+consensus:
+  enabled: true   # use consensus (Vina + SMINA)
+
+pareto:
+  enabled: true
+  columns: ["score", "xymove", "best_affinity_kcal_per_mol"]
+  maximize: [true, true, false]
+
+duckdb:
+  path: data/results.duckdb

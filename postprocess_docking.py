@@ -4,10 +4,14 @@ import csv
 from collections import defaultdict
 from pathlib import Path
 
-# Backend não interativo para salvar figuras
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
+# Backend não interativo para salvar figuras (opcional)
+HAVE_MPL = True
+try:
+    import matplotlib  # type: ignore
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt  # type: ignore
+except Exception:
+    HAVE_MPL = False
 
 
 def parse_float(val):
@@ -157,6 +161,114 @@ def main():
 
     # Gráficos: afinidade por alvo (violin/box)
     plot_kinds = {k.strip().lower() for k in args.plots.split(',') if k.strip()}
+    # Simple SVG fallback for boxplots when matplotlib is unavailable
+    def save_boxplot_svg(targets, series, out_path):
+        """Write a simple boxplot as SVG using only stdlib.
+
+        targets: list of target names
+        series: list of lists of floats (same order as targets)
+        """
+        # Compute quartiles and whiskers
+        import math
+        def quantile(vals, q):
+            if not vals:
+                return None
+            xs = sorted(vals)
+            pos = (len(xs) - 1) * q
+            lo = math.floor(pos)
+            hi = math.ceil(pos)
+            if lo == hi:
+                return xs[int(pos)]
+            return xs[lo] + (xs[hi] - xs[lo]) * (pos - lo)
+
+        stats = []
+        all_vals = []
+        for vals in series:
+            if vals:
+                all_vals.extend(vals)
+                q1 = quantile(vals, 0.25)
+                med = quantile(vals, 0.50)
+                q3 = quantile(vals, 0.75)
+                vmin = min(vals)
+                vmax = max(vals)
+            else:
+                q1 = med = q3 = vmin = vmax = None
+            stats.append((q1, med, q3, vmin, vmax))
+        if not all_vals:
+            return False
+        vmin_all = min(all_vals)
+        vmax_all = max(all_vals)
+        if vmin_all == vmax_all:
+            vmax_all = vmin_all + 1.0
+
+        # SVG canvas
+        W, H = 900, 500
+        margin_l, margin_r, margin_t, margin_b = 80, 20, 30, 60
+        plot_w = W - margin_l - margin_r
+        plot_h = H - margin_t - margin_b
+
+        def ypix(val):
+            # Map value -> y pixel (top smaller, bottom larger)
+            return margin_t + (vmax_all - val) * plot_h / (vmax_all - vmin_all)
+
+        n = len(targets)
+        if n == 0:
+            return False
+        step = plot_w / max(1, n)
+        box_w = step * 0.35
+
+        # Build SVG elements
+        parts = []
+        parts.append(f"<svg xmlns='http://www.w3.org/2000/svg' width='{W}' height='{H}'>")
+        parts.append("<style> .axis{stroke:#333;stroke-width:1} .grid{stroke:#ddd;stroke-width:1} .txt{font:12px sans-serif;fill:#333} .legend{font:14px sans-serif;fill:#333} </style>")
+        # Title
+        parts.append(f"<text class='legend' x='{W/2:.1f}' y='20' text-anchor='middle'>Distribuição de afinidades por alvo (Boxplot)</text>")
+        # Axes
+        # y-axis with ticks
+        yticks = 6
+        for i in range(yticks+1):
+            frac = i/yticks
+            val = vmin_all + (vmax_all - vmin_all)*frac
+            y = ypix(val)
+            parts.append(f"<line class='grid' x1='{margin_l}' y1='{y:.1f}' x2='{W-margin_r}' y2='{y:.1f}'/>")
+            parts.append(f"<text class='txt' x='{margin_l-6}' y='{y+4:.1f}' text-anchor='end'>{val:.2f}</text>")
+        # x-axis
+        parts.append(f"<line class='axis' x1='{margin_l}' y1='{H-margin_b}' x2='{W-margin_r}' y2='{H-margin_b}'/>")
+
+        # Boxes per target
+        for idx, (t, st) in enumerate(zip(targets, stats)):
+            q1, med, q3, vmin, vmax = st
+            cx = margin_l + step*(idx+0.5)
+            # Label
+            parts.append(f"<text class='txt' x='{cx:.1f}' y='{H-margin_b+18}' text-anchor='middle' transform='rotate(0 {cx:.1f},{H-margin_b+18})'>{t}</text>")
+            if None in (q1, med, q3, vmin, vmax):
+                continue
+            # Box
+            yq1 = ypix(q1); yq3 = ypix(q3)
+            x0 = cx - box_w/2; x1 = cx + box_w/2
+            parts.append(f"<rect x='{x0:.1f}' y='{min(yq1,yq3):.1f}' width='{box_w:.1f}' height='{abs(yq3-yq1):.1f}' fill='#7aa6e3' stroke='#225c9c' stroke-width='1' fill-opacity='0.5' />")
+            # Median
+            ymed = ypix(med)
+            parts.append(f"<line x1='{x0:.1f}' y1='{ymed:.1f}' x2='{x1:.1f}' y2='{ymed:.1f}' stroke='#1b3f6b' stroke-width='2' />")
+            # Whiskers
+            yvmin = ypix(vmin); yvmax = ypix(vmax)
+            parts.append(f"<line x1='{cx:.1f}' y1='{yvmin:.1f}' x2='{cx:.1f}' y2='{yq1:.1f}' stroke='#225c9c' stroke-width='1' />")
+            parts.append(f"<line x1='{cx:.1f}' y1='{yq3:.1f}' x2='{cx:.1f}' y2='{yvmax:.1f}' stroke='#225c9c' stroke-width='1' />")
+            parts.append(f"<line x1='{(cx-box_w*0.3):.1f}' y1='{yvmin:.1f}' x2='{(cx+box_w*0.3):.1f}' y2='{yvmin:.1f}' stroke='#225c9c' stroke-width='1' />")
+            parts.append(f"<line x1='{(cx-box_w*0.3):.1f}' y1='{yvmax:.1f}' x2='{(cx+box_w*0.3):.1f}' y2='{yvmax:.1f}' stroke='#225c9c' stroke-width='1' />")
+
+        # Y label
+        parts.append(f"<text class='txt' x='20' y='{H/2:.1f}' transform='rotate(-90 20,{H/2:.1f})' text-anchor='middle'>Afinidade (kcal/mol) — mais negativo é melhor</text>")
+        parts.append("</svg>")
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text("\n".join(parts), encoding="utf-8")
+        return True
+
+    if plot_kinds and not HAVE_MPL:
+        # Fallback: only boxplot as SVG
+        plot_kinds = {'box'} if 'box' in plot_kinds or 'violin' in plot_kinds else set()
+        if not plot_kinds:
+            print("[WARN] matplotlib não disponível; pulando geração de gráficos.")
     if plot_kinds:
         # Agrupar por alvo
         by_target = defaultdict(list)
@@ -172,9 +284,9 @@ def main():
         outdir.mkdir(parents=True, exist_ok=True)
 
         if data and any(len(lst) for lst in data):
-            if 'violin' in plot_kinds:
+            if HAVE_MPL and 'violin' in plot_kinds:
                 plt.figure(figsize=(10, 5))
-                parts = plt.violinplot(data, showmeans=True, showmedians=True)
+                _ = plt.violinplot(data, showmeans=True, showmedians=True)
                 plt.xticks(range(1, len(targets)+1), targets, rotation=45, ha='right')
                 plt.ylabel('Afinidade (kcal/mol) — valores mais negativos são melhores')
                 plt.title('Distribuição de afinidades por alvo (Violin)')
@@ -182,14 +294,17 @@ def main():
                 plt.savefig(outdir / 'affinity_by_target_violin.png', dpi=150)
                 plt.close()
             if 'box' in plot_kinds:
-                plt.figure(figsize=(10, 5))
-                plt.boxplot(data, showmeans=True)
-                plt.xticks(range(1, len(targets)+1), targets, rotation=45, ha='right')
-                plt.ylabel('Afinidade (kcal/mol) — valores mais negativos são melhores')
-                plt.title('Distribuição de afinidades por alvo (Boxplot)')
-                plt.tight_layout()
-                plt.savefig(outdir / 'affinity_by_target_box.png', dpi=150)
-                plt.close()
+                if HAVE_MPL:
+                    plt.figure(figsize=(10, 5))
+                    plt.boxplot(data, showmeans=True)
+                    plt.xticks(range(1, len(targets)+1), targets, rotation=45, ha='right')
+                    plt.ylabel('Afinidade (kcal/mol) — valores mais negativos são melhores')
+                    plt.title('Distribuição de afinidades por alvo (Boxplot)')
+                    plt.tight_layout()
+                    plt.savefig(outdir / 'affinity_by_target_box.png', dpi=150)
+                    plt.close()
+                else:
+                    save_boxplot_svg(targets, data, outdir / 'affinity_by_target_box.svg')
 
     print("Feito:")
     print(f" - CSV ordenado: {args.out_sorted}")

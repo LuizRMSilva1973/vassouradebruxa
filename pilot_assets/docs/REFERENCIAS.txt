@@ -1,0 +1,10 @@
+Referências e páginas usadas para montar os insumos:
+- UniProt P38631: https://www.uniprot.org/uniprotkb/P38631/entry
+- AlphaFold P38631: https://alphafold.ebi.ac.uk/entry/P38631
+- SWISS-MODEL P38631: https://swissmodel.expasy.org/repository/uniprot/P38631
+- FKS1 estruturas: 7XE4, 8WL6 em RCSB PDB (https://www.rcsb.org/structure/7XE4, https://www.rcsb.org/structure/8WL6)
+- Caspofungina (IDs/SMILES): https://en.wikipedia.org/wiki/Caspofungin
+- Ibrexafungerp (IDs/SMILES): https://en.wikipedia.org/wiki/Ibrexafungerp
+- SDF (PubChem PUG REST):
+    * Caspofungin (CID 16119814): https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/CID/16119814/SDF?record_type=3d
+    * Ibrexafungerp (CID 46871657): https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/CID/46871657/SDF?record_type=3d

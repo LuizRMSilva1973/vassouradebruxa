@@ -1,0 +1,12 @@
+{
+  "created": true,
+  "files": [
+    "data_ligantes_external.csv",
+    "targets/FKS_links.txt",
+    "ligands/ibrexafungerp.smiles",
+    "ligands/caspofungina.smiles",
+    "ligands/README_fetch.txt",
+    "docs/REFERENCIAS.txt",
+    "docs/BOX_SUGESTOES.txt"
+  ]
+}

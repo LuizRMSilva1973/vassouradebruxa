@@ -100,15 +100,19 @@ find_mgltool() {
   return 1
 }
 
-MGLBIN="$(find_mgltool || true)"
-if [[ -z "${MGLBIN}" ]]; then
-  echo "ERRO: Não encontrei o MGLTools (pythonsh + Utilities24). Verifique a instalação."
-  echo "Dica: rode novamente o instalador e confirme o caminho do MGLTools."
-  exit 1
+MGLBIN="${MGLBIN:-$(find_mgltool || true)}"
+PREP_MODE="mgl"
+if [[ -n "${PREP_REC_CMD:-}" && -n "${PREP_LIG_CMD:-}" ]]; then
+  echo "[INFO] Usando comandos customizados para preparar receptor/ligante."
+  PREP_REC="${PREP_REC_CMD}"
+  PREP_LIG="${PREP_LIG_CMD}"
+elif [[ -n "${MGLBIN}" ]]; then
+  PREP_LIG="${MGLBIN}/pythonsh ${MGLBIN}/../MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py"
+  PREP_REC="${MGLBIN}/pythonsh ${MGLBIN}/../MGLToolsPckgs/AutoDockTools/Utilities24/prepare_receptor4.py"
+else
+  echo "[WARN] MGLTools não encontrado. Vou usar fallback com OpenBabel para gerar PDBQT."
+  PREP_MODE="obabel"
 fi
-
-PREP_LIG="${MGLBIN}/pythonsh ${MGLBIN}/../MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py"
-PREP_REC="${MGLBIN}/pythonsh ${MGLBIN}/../MGLToolsPckgs/AutoDockTools/Utilities24/prepare_receptor4.py"
 
 # 2) checagens
 command -v vina >/dev/null 2>&1 || { echo "ERRO: 'vina' não encontrado."; exit 1; }
@@ -127,8 +131,30 @@ prep_target() {
   if [[ -f "${outpdbqt}" ]]; then
     echo "[TARGET] ${base}.pdbqt já existe."
   else
-    echo "[TARGET] Preparando ${base}.pdbqt ..."
-    ${PREP_REC} -r "${pdb}" -o "${outpdbqt}" >/dev/null 2>&1
+    if [[ "${PREP_MODE}" == "mgl" ]]; then
+      echo "[TARGET] Preparando (MGL) ${base}.pdbqt ..."
+      ${PREP_REC} -r "${pdb}" -o "${outpdbqt}" >/dev/null 2>&1
+    else
+      echo "[TARGET] Preparando (OpenBabel) ${base}.pdbqt ..."
+      # Add hydrogens and Gasteiger charges; pH 7.4 as default for docking
+      obabel -ipdb "${pdb}" -opdbqt -O "${outpdbqt}" -xh -p 7.4 --partialcharge gasteiger >/dev/null 2>&1 || \
+      obabel -ipdb "${pdb}" -opdbqt -O "${outpdbqt}" -xh >/dev/null 2>&1
+      # Sanitizar receptor PDBQT: remover tokens de ligante se presentes
+      if grep -qE '^(ROOT|BRANCH|TORSDOF|ENDROOT|ENDBRANCH)' "${outpdbqt}" 2>/dev/null; then
+        echo "[TARGET] Sanitizando ${base}.pdbqt (removendo tokens de ligante) ..."
+        awk 'BEGIN{print "REMARK  Receptor PDBQT sanitized from OpenBabel output"} \
+             /^ATOM/ || /^HETATM/ || /^TER/ || /^END$/ || /^REMARK/ {print} \
+             {next}' "${outpdbqt}" > "${outpdbqt}.sanitized" && mv "${outpdbqt}.sanitized" "${outpdbqt}"
+      fi
+    fi
+  fi
+
+  # Sempre sanitizar se tokens indevidos forem encontrados (mesmo quando já existia)
+  if grep -qE '^(ROOT|BRANCH|TORSDOF|ENDROOT|ENDBRANCH)' "${outpdbqt}" 2>/dev/null; then
+    echo "[TARGET] Sanitizando ${base}.pdbqt existente (removendo tokens de ligante) ..."
+    awk 'BEGIN{print "REMARK  Receptor PDBQT sanitized (existing file)"} \
+         /^ATOM/ || /^HETATM/ || /^TER/ || /^END$/ || /^REMARK/ {print} \
+         {next}' "${outpdbqt}" > "${outpdbqt}.sanitized" && mv "${outpdbqt}.sanitized" "${outpdbqt}"
   fi
 }
 
@@ -145,11 +171,17 @@ prep_ligand() {
     return
   fi
 
-  echo "[LIG] Gerando 3D e convertendo ${stem} -> ${name}.pdb ..."
-  obabel "${file}" -O "${tmp_pdb}" --gen3d >/dev/null 2>&1
-
-  echo "[LIG] Preparando ${name}.pdbqt ..."
-  ${PREP_LIG} -l "${tmp_pdb}" -o "${outpdbqt}" >/dev/null 2>&1
+  if [[ "${PREP_MODE}" == "mgl" ]]; then
+    echo "[LIG] Gerando 3D e convertendo ${stem} -> ${name}.pdb ..."
+    obabel "${file}" -O "${tmp_pdb}" --gen3d >/dev/null 2>&1
+    echo "[LIG] Preparando (MGL) ${name}.pdbqt ..."
+    ${PREP_LIG} -l "${tmp_pdb}" -o "${outpdbqt}" >/dev/null 2>&1
+  else
+    echo "[LIG] Convertendo (OpenBabel) ${stem} -> ${name}.pdbqt com 3D ..."
+    obabel "${file}" -O "${outpdbqt}" --gen3d --partialcharge gasteiger >/dev/null 2>&1 || \
+    obabel "${file}" -O "${outpdbqt}" --gen3d >/dev/null 2>&1 || \
+    obabel "${file}" -O "${outpdbqt}" >/dev/null 2>&1
+  fi
 }
 
 # 6) função: ler caixa (grid) do arquivo targets/<ALVO>.box
@@ -190,7 +222,11 @@ dock_pair() {
   local lbase="$(basename "${ligand_pdbqt}" .pdbqt)"
 
   # caixa
-  IFS='|' read -r cx cy cz sx sy sz < <( read_box "${tbase}" )
+  boxvals=$( read_box "${tbase}" ) || {
+    echo "[WARN] Sem caixa válida para ${tbase}; pulando par ${lbase} x ${tbase}." >&2
+    return 0
+  }
+  IFS='|' read -r cx cy cz sx sy sz <<<"${boxvals}"
 
   local pair_out="${OUTDIR}/${tbase}/${lbase}"
   mkdir -p "${pair_out}"
@@ -208,19 +244,32 @@ dock_pair() {
     --size_x   "${sx}" --size_y   "${sy}" --size_z   "${sz}"
     --exhaustiveness "${EXHAUSTIVENESS}"
     --num_modes "${NUM_MODES}"
-    --out "${outp}" --log "${logf}"
+    --out "${outp}"
   )
   if [[ -n "${VINA_CPU}" ]]; then
     vina_args+=( --cpu "${VINA_CPU}" )
   fi
-  vina "${vina_args[@]}" >/dev/null 2>&1
+  if [[ "${VINA_VERBOSE:-}" == "1" ]]; then
+    vina "${vina_args[@]}" 2>&1 | tee "${logf}"
+  else
+    vina "${vina_args[@]}" >"${logf}" 2>&1
+  fi
+  local rc=$?
+  if [[ $rc -ne 0 ]]; then
+    echo "[ERROR] Vina failed for ${lbase} on ${tbase} (exit=${rc}). Set VINA_VERBOSE=1 to see details." >&2
+    return $rc
+  fi
 
   # extrair melhor afinidade do log
   local best_aff mode
   best_aff="$(awk '/^-----+/{f=1;next} f && NF>0{print $2; exit}' "${logf}" 2>/dev/null || echo "NA")"
   mode="$(awk '/^-----+/{f=1;next} f && NF>0{print $1; exit}' "${logf}" 2>/dev/null || echo "NA")"
 
-  echo "${tbase},${lbase},${best_aff},${mode},${EXHAUSTIVENESS},${NUM_MODES},${cx},${cy},${cz},${sx},${sy},${sz}" >> "${SUMMARY}"
+  if [[ "${best_aff}" == "NA" ]]; then
+    echo "[WARN] No affinity parsed for ${lbase} on ${tbase}. Check log: ${logf}" >&2
+  else
+    echo "${tbase},${lbase},${best_aff},${mode},${EXHAUSTIVENESS},${NUM_MODES},${cx},${cy},${cz},${sx},${sy},${sz}" >> "${SUMMARY}"
+  fi
 }
 
 # 8) preparar todos os alvos e ligantes
@@ -249,7 +298,8 @@ fi
 echo ">>> Iniciando docking em lote... (exhaustiveness=${EXHAUSTIVENESS}, num_modes=${NUM_MODES}${THREADS:+, threads=${THREADS}}${VINA_CPU:+, vina_cpu=${VINA_CPU}})"
 if command -v parallel >/dev/null 2>&1; then
   export -f dock_pair read_box
-  export OUTDIR SUMMARY EXHAUSTIVENESS VINA_CPU
+  # Exportar variáveis usadas dentro de funções quando executadas via GNU parallel
+  export OUTDIR SUMMARY EXHAUSTIVENESS NUM_MODES VINA_CPU TARGETS_DIR LIGANDS_DIR WORKDIR
   if [[ -n "${THREADS}" ]]; then
     parallel -j "${THREADS}" --will-cite dock_pair {1} {2} ::: "${TARGETS_PDBQT[@]}" ::: "${LIGANDS_PDBQT[@]}"
   else
