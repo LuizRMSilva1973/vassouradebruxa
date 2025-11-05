@@ -1,0 +1,20 @@
+weights:
+  affinity: 0.35           # peso para ΔG (kcal/mol) — mais negativo é melhor
+  selectivity: 0.20        # peso para ΔΔG vs alvo de referência — mais negativo é melhor
+  xymove: 0.25             # peso para mobilidade xilemática (0–1) — maior é melhor
+  synthesizability: 0.10   # peso para SA (invertido) — menor SA é melhor
+  alerts: 0.10             # penalidades por PAINS/reatividade
+
+constraints:
+  # Piloto (afrouxado para triagem inicial). Ajustar pós-novo docking.
+  min_affinity_kcal_per_mol: -5.0
+  min_ddg_kcal_per_mol: -1.0
+  min_xymove: 0.55
+  max_sa: 6.0
+
+penalties:
+  pains: 1.0
+  reactive_flags: 1.0
+
+notes: |
+  Rascunho inicial. Ajustar após o primeiro lote de docking e análise de sensibilidade.

@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install tools (ruff, shellcheck)
+        run: |
+          python -m pip install --upgrade pip
+          pip install --no-input ruff
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+
+      - name: Bash syntax check
+        run: |
+          bash -n run_docking.sh
+          bash -n install_in_silico.sh
+
+      - name: Shellcheck scripts (blocking)
+        run: |
+          shellcheck run_docking.sh
+          shellcheck install_in_silico.sh
+
+      - name: Ruff lint (blocking)
+        run: ruff check --output-format=github topn_by_target.py
+
+      - name: Python syntax check
+        run: python -m py_compile topn_by_target.py

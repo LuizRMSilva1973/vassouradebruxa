@@ -1,0 +1,6 @@
+alvo,id_proteico,isoforma,genoma_ref,comprimento_aa,dominios_pfams,helices_tm,motivos_cataliticos,cofatores,comentarios,prioridade
+CHS, , , , ,PF01644|PF03142, ,QRRRW|DXH, ,"PF01644/PF03142; motivo QRRRW; multipasse",Alta
+FKS, , , , ,FKS1_family, ,motivos conservados FKS, ,"BLASTP FKS1/FKS2 (Basidiomycota); multipasse",Alta
+AGS, , , , ,GT_family, , , ,"BLASTP AGS fúngicos; GT multipasse",Media
+GEL/GAS, , , , ,GEL|GAS, , , ,"Domínios GEL/GAS característicos",Suporte
+CDA, , , , ,CDA, ,HX(4)H|RDP, ,"Domínios CDA; GO: chitin deacetylase activity",Suporte
