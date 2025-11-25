@@ -1,0 +1,9 @@
+prefix=/home/luiz/Área de trabalho/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/miniforge_clean
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include 
+
+Name: OpenSSL
+Description: Secure Sockets Layer and cryptography libraries and tools
+Version: 3.5.1
+Requires: libssl libcrypto

@@ -1,0 +1,47 @@
+AutoDock Vina v1.2.5
+#################################################################
+# If you used AutoDock Vina in your work, please cite:          #
+#                                                               #
+# J. Eberhardt, D. Santos-Martins, A. F. Tillack, and S. Forli  #
+# AutoDock Vina 1.2.0: New Docking Methods, Expanded Force      #
+# Field, and Python Bindings, J. Chem. Inf. Model. (2021)       #
+# DOI 10.1021/acs.jcim.1c00203                                  #
+#                                                               #
+# O. Trott, A. J. Olson,                                        #
+# AutoDock Vina: improving the speed and accuracy of docking    #
+# with a new scoring function, efficient optimization and       #
+# multithreading, J. Comp. Chem. (2010)                         #
+# DOI 10.1002/jcc.21334                                         #
+#                                                               #
+# Please see https://github.com/ccsb-scripps/AutoDock-Vina for  #
+# more information.                                             #
+#################################################################
+
+Scoring function : vina
+Rigid receptor: targets/FKS_8WL6.pdbqt
+Ligand: ligands/poacic acid.pdbqt
+Grid center: X 92.823 Y 135.757 Z 64.264
+Grid size  : X 28 Y 28 Z 28
+Grid space : 0.375
+Exhaustiveness: 4
+CPU: 0
+Verbosity: 1
+
+Computing Vina grid ... done.
+Performing docking (random seed: 42) ... 
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+
+mode |   affinity | dist from best mode
+     | (kcal/mol) | rmsd l.b.| rmsd u.b.
+-----+------------+----------+----------
+   1            0          0          0
+   2            0      7.811      10.68
+   3    2.374e-06      9.762      12.87
+   4    2.374e-06      7.376      8.628
+   5    2.374e-06      3.612      8.541
+   6    2.374e-06      4.399      8.617
+   7    2.374e-06      3.454      7.789
+   8    4.816e-06      5.357      10.51
+   9    4.816e-06      7.644       9.81

@@ -1,0 +1,27 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='900' height='500'>
+<style> .axis{stroke:#333;stroke-width:1} .grid{stroke:#ddd;stroke-width:1} .txt{font:12px sans-serif;fill:#333} .legend{font:14px sans-serif;fill:#333} </style>
+<text class='legend' x='450.0' y='20' text-anchor='middle'>Distribuição de afinidades por alvo (Boxplot)</text>
+<line class='grid' x1='80' y1='440.0' x2='880' y2='440.0'/>
+<text class='txt' x='74' y='444.0' text-anchor='end'>-7.10</text>
+<line class='grid' x1='80' y1='371.7' x2='880' y2='371.7'/>
+<text class='txt' x='74' y='375.7' text-anchor='end'>-6.88</text>
+<line class='grid' x1='80' y1='303.3' x2='880' y2='303.3'/>
+<text class='txt' x='74' y='307.3' text-anchor='end'>-6.67</text>
+<line class='grid' x1='80' y1='235.0' x2='880' y2='235.0'/>
+<text class='txt' x='74' y='239.0' text-anchor='end'>-6.45</text>
+<line class='grid' x1='80' y1='166.7' x2='880' y2='166.7'/>
+<text class='txt' x='74' y='170.7' text-anchor='end'>-6.23</text>
+<line class='grid' x1='80' y1='98.3' x2='880' y2='98.3'/>
+<text class='txt' x='74' y='102.3' text-anchor='end'>-6.02</text>
+<line class='grid' x1='80' y1='30.0' x2='880' y2='30.0'/>
+<text class='txt' x='74' y='34.0' text-anchor='end'>-5.80</text>
+<line class='axis' x1='80' y1='440' x2='880' y2='440'/>
+<text class='txt' x='480.0' y='458' text-anchor='middle' transform='rotate(0 480.0,458)'>FKS</text>
+<rect x='340.0' y='30.0' width='280.0' height='283.8' fill='#7aa6e3' stroke='#225c9c' stroke-width='1' fill-opacity='0.5' />
+<line x1='340.0' y1='30.0' x2='620.0' y2='30.0' stroke='#1b3f6b' stroke-width='2' />
+<line x1='480.0' y1='440.0' x2='480.0' y2='313.8' stroke='#225c9c' stroke-width='1' />
+<line x1='480.0' y1='30.0' x2='480.0' y2='30.0' stroke='#225c9c' stroke-width='1' />
+<line x1='396.0' y1='440.0' x2='564.0' y2='440.0' stroke='#225c9c' stroke-width='1' />
+<line x1='396.0' y1='30.0' x2='564.0' y2='30.0' stroke='#225c9c' stroke-width='1' />
+<text class='txt' x='20' y='250.0' transform='rotate(-90 20,250.0)' text-anchor='middle'>Afinidade (kcal/mol) — mais negativo é melhor</text>
+</svg>

@@ -1,0 +1,27 @@
+# ==== PyTorch ====
+# CPU (default, funciona em qualquer máquina):
+--index-url https://download.pytorch.org/whl/cpu
+torch
+torchvision
+torchaudio
+
+# GPU (opcional): escolha a *uma* linha de índice compatível com sua CUDA
+# --index-url https://download.pytorch.org/whl/cu121
+# torch
+# torchvision
+# torchaudio
+
+# ==== ESMFold stack ====
+# ESM (inclui ESMFold)
+git+https://github.com/facebookresearch/esm.git
+# deps
+einops
+biopython
+
+# OpenFold (usado indiretamente pelo esm/esmfold)
+git+https://github.com/aqlaboratory/openfold.git@main
+
+# utilitários
+regex
+numpy
+

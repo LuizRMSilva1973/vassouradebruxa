@@ -1,0 +1,9 @@
+ligand,target,best_affinity_kcal_per_mol,xymove,ddg_kcal_per_mol,score,passes_constraints
+anidulafungin,FKS,-5.447,0.473,-5.447,0.367,no
+caspofungin,FKS,-5.389,0.280,-5.389,0.313,no
+ibrexafungerp,FKS,-5.955,0.579,-5.955,0.450,yes
+micafungin,FKS,-6.646,0.203,-6.646,0.432,no
+nikkomycin X,FKS,-5.950,0.349,-5.950,0.392,no
+papulacandin B,FKS,-6.100,0.583,-6.100,0.467,yes
+poacic acid,FKS,-5.570,0.897,-5.570,0.487,yes
+rezafungin,FKS,-6.267,0.502,-6.267,0.465,yes

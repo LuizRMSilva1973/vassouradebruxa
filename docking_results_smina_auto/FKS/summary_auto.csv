@@ -1,0 +1,6 @@
+ligand,error,sdf
+anidulafungin,prepare_ligand4.py não encontrado; instale MGLTools ou informe --prep-mgl,ligands_sdf/anidulafungin.sdf
+caspofungin,prepare_ligand4.py não encontrado; instale MGLTools ou informe --prep-mgl,ligands_sdf/caspofungin.sdf
+micafungin,prepare_ligand4.py não encontrado; instale MGLTools ou informe --prep-mgl,ligands_sdf/micafungin.sdf
+papulacandin_B,prepare_ligand4.py não encontrado; instale MGLTools ou informe --prep-mgl,ligands_sdf/papulacandin B.sdf
+rezafungin,prepare_ligand4.py não encontrado; instale MGLTools ou informe --prep-mgl,ligands_sdf/rezafungin.sdf

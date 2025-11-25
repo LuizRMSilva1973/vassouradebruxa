@@ -1,0 +1,36 @@
+# Configuração padrão do Snakefile
+
+vina:
+  exhaustiveness: 16
+  num_modes: 9
+  # threads: 4           # Descomente para GNU parallel
+  # cpu: 1               # --cpu por job do Vina
+
+smina:
+  exhaustiveness: 16
+  num_modes: 9
+
+postprocess:
+  # Alvo de referência para ΔΔG (off-target ou controle)
+  ref_target: FKS_8WL6
+
+score:
+  # Alvo de referência (usado também em score_multiobjective)
+  ref_target: FKS_8WL6
+
+consensus:
+  enabled: false
+
+pareto:
+  enabled: true
+  columns: ["score", "xymove", "best_affinity_kcal_per_mol"]
+  maximize: [true, true, false]
+
+duckdb:
+  path: data/results.duckdb
+
+shortlist:
+  min_score: 0.45
+  min_xymove: 0.35
+  per_target_top: 5
+  top_k: 25

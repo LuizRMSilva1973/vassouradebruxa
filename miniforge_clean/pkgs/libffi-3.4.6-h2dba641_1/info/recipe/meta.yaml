@@ -1,0 +1,87 @@
+# This file created by conda-build 25.3.1
+# meta.yaml template originally from:
+# /home/conda/recipe_root, last modified Mon Mar 31 15:18:20 2025
+# ------------------------------------------------
+
+package:
+  name: libffi
+  version: 3.4.6
+source:
+  patches:
+    - 0001-arm64-use-a-dedicated-dylib-for-trampolines-so-it-ca.patch
+    - 0002-Add-support-for-ffi_find_closure_for_code_np-on-Appl.patch
+  sha256: b0dea9df23c863a7a50e825440f3ebffabd65df1497108e5d437747843895a4e
+  url: https://github.com/libffi/libffi/releases/download/v3.4.6/libffi-3.4.6.tar.gz
+build:
+  number: '1'
+  run_exports:
+    - libffi >=3.4.6,<3.5.0a0
+  string: h2dba641_1
+requirements:
+  build:
+    - _libgcc_mutex 0.1 conda_forge
+    - _openmp_mutex 4.5 2_gnu
+    - autoconf 2.71 pl5321h2b4cb7a_1
+    - automake 1.16.5 pl5321ha770c72_0
+    - binutils_impl_linux-64 2.43 h4bf12b8_4
+    - binutils_linux-64 2.43 h4852527_4
+    - gcc_impl_linux-64 13.3.0 h1e990d8_2
+    - gcc_linux-64 13.3.0 hc28eda2_8
+    - kernel-headers_linux-64 3.10.0 he073ed8_18
+    - ld_impl_linux-64 2.43 h712a8e2_4
+    - libgcc 14.2.0 h767d61c_2
+    - libgcc-devel_linux-64 13.3.0 hc03c837_102
+    - libgcc-ng 14.2.0 h69a702a_2
+    - libgomp 14.2.0 h767d61c_2
+    - libltdl 2.4.3a h5888daf_0
+    - libsanitizer 13.3.0 he8ea267_2
+    - libstdcxx 14.2.0 h8f9b012_2
+    - libtool 2.5.4 h5888daf_0
+    - libxcrypt 4.4.36 hd590300_1
+    - m4 1.4.18 h516909a_1001
+    - make 4.4.1 hb9d3cd8_2
+    - ncurses 6.5 h2d0b736_3
+    - patch 2.7.6 h7f98852_1002
+    - perl 5.32.1 7_hd590300_perl5
+    - sysroot_linux-64 2.17 h0157908_18
+    - texinfo 7.2 pl5321haa1a288_0
+    - tzdata 2025b h78e105d_0
+  host:
+    - _libgcc_mutex 0.1 conda_forge
+    - _openmp_mutex 4.5 2_gnu
+    - libgcc 14.2.0 h767d61c_2
+    - libgomp 14.2.0 h767d61c_2
+  run:
+    - __glibc >=2.17,<3.0.a0
+    - libgcc >=13
+test:
+  commands:
+    - test -e $PREFIX/lib/libffi${SHLIB_EXT}
+    - test -e $PREFIX/lib/libffi.a
+    - test -e $PREFIX/include/ffi.h
+    - test -e $PREFIX/include/ffitarget.h
+  requires: null
+about:
+  description: 'The libffi library provides a portable, high level programming interface
+
+    to various calling conventions. This allows a programmer to call any
+
+    function specified by a call interface description at run-time.
+
+    '
+  dev_url: https://github.com/libffi/libffi
+  doc_url: https://sourceware.org/libffi/
+  home: https://sourceware.org/libffi/
+  license: MIT
+  license_file: LICENSE
+  summary: A Portable Foreign Function Interface Library.
+extra:
+  copy_test_source_files: true
+  final: true
+  flow_run_id: azure_20250331.5.1
+  recipe-maintainers:
+    - isuruf
+    - scopatz
+    - stefan-balke
+  remote_url: https://github.com/conda-forge/libffi-feedstock
+  sha: 1105c826e22f4eb4ef5147621f839770764a85b2

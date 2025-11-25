@@ -1,0 +1,22 @@
+ligand,smiles,source,notes
+ibrexafungerp,CC(C)[C@@H](C)[C@@]1(C)CC[C@]2(C)[C@H]3CC[C@H]4[C@@]5(C)COC[C@@]4(C[C@@H](n4ncnc4-c4ccncc4)[C@@H]5OC[C@](C)(N)C(C)(C)C)C3=CC[C@@]2(C)[C@@H]1C(=O)O,PubChem,"triterpeno antifúngico (FKS)"
+caspofungina,[C@@]12(N(C[C@@H](C1)O)C([C@H]([C@@H](C)O)NC(=O)[C@](C[C@H]([C@@H](NCCN)NC([C@@H]3[C@H](CCN3C([C@H]([C@@H](CCN)O)NC(=O)[C@H]([C@@H]([C@H](C4=CC=C(C=C4)O)O)O)NC2=O)=O)O)=O)O)(NC(CCCCCCCC[C@H](C[C@H](CC)C)C)=O)[H])=O)[H],PubChem,"echinocandina (FKS) — Vina pode falhar; usar Smina"
+nikkomycin Z,C[C@H]([C@@H](C1=NC=C(C=C1)O)O)[C@@H](C(=O)N[C@@H]([C@@H]2[C@H]([C@H]([C@@H](O2)N3C=CC(=O)NC3=O)O)O)C(=O)O)N,PubChem,"análogo UDP-GlcNAc (CHS)"
+nikkomycin X,CC(C(C1=NC=C(C=C1)O)O)C(C(=O)NC(C2C(C(C(O2)N3C=C(NC3=O)C=O)O)O)C(=O)O)N,PubChem,"análogo UDP-GlcNAc (CHS)"
+enfumafungin,C[C@H](C(C)C)[C@]1(CC[C@@]2([C@H]3CC[C@H]4[C@]5(COC([C@]4(C3=CC[C@]2([C@@H]1C(=O)O)C)C[C@H]([C@@H]5O[C@H]6[C@@H]([C@H]([C@@H]([C@H](O6)CO)O)O)O)OC(=O)C)O)C)C)C,PubChem,"triterpeno (FKS)"
+rezafungin,CCCCCOC1=CC=C(C=C1)C2=CC=C(C=C2)C3=CC=C(C=C3)C(=O)N[C@H]4C[C@H]([C@H](NC(=O)[C@@H]5[C@H]([C@H](CN5C(=O)[C@@H](NC(=O)[C@@H](NC(=O)[C@@H]6C[C@H](CN6C(=O)[C@@H](NC4=O)[C@@H](C)O)O)[C@@H]([C@H](C7=CC=C(C=C7)O)O)O)[C@@H](C)O)C)O)O)OCC[N+](C)(C)C,PubChem,"echinocandina (FKS)"
+micafungin,CCCCCOC1=CC=C(C=C1)C2=CC(=NO2)C3=CC=C(C=C3)C(=O)N[C@H]4C[C@H]([C@H](NC(=O)[C@@H]5[C@H]([C@H](CN5C(=O)[C@@H](NC(=O)[C@@H](NC(=O)[C@@H]6C[C@H](CN6C(=O)[C@@H](NC4=O)[C@@H](C)O)O)[C@@H]([C@H](C7=CC(=C(C=C7)O)OS(=O)(=O)O)O)O)[C@@H](CC(=O)N)O)C)O)O)O,PubChem,"echinocandina (FKS)"
+anidulafungin,CCCCCOC1=CC=C(C=C1)C2=CC=C(C=C2)C3=CC=C(C=C3)C(=O)N[C@H]4C[C@H]([C@H](NC(=O)[C@@H]5[C@H]([C@H](CN5C(=O)[C@@H](NC(=O)[C@@H](NC(=O)[C@@H]6C[C@H](CN6C(=O)[C@@H](NC4=O)[C@@H](C)O)O)[C@@H]([C@H](C7=CC=C(C=C7)O)O)O)[C@@H](C)O)C)O)O)O,PubChem,"echinocandina (FKS)"
+nikkomycin Z,C[C@H]([C@@H](C1=NC=C(C=C1)O)O)[C@@H](C(=O)N[C@@H]([C@@H]2[C@H]([C@H]([C@@H](O2)N3C=CC(=O)NC3=O)O)O)C(=O)O)N,PubChem,auto-fetched by name
+nikkomycin X,CC(C(C1=NC=C(C=C1)O)O)C(C(=O)NC(C2C(C(C(O2)N3C=C(NC3=O)C=O)O)O)C(=O)O)N,PubChem,auto-fetched by name
+enfumafungin,C[C@H](C(C)C)[C@]1(CC[C@@]2([C@H]3CC[C@H]4[C@]5(COC([C@]4(C3=CC[C@]2([C@@H]1C(=O)O)C)C[C@H]([C@@H]5O[C@H]6[C@@H]([C@H]([C@@H]([C@H](O6)CO)O)O)O)OC(=O)C)O)C)C)C,PubChem,auto-fetched by name
+rezafungin,CCCCCOC1=CC=C(C=C1)C2=CC=C(C=C2)C3=CC=C(C=C3)C(=O)N[C@H]4C[C@H]([C@H](NC(=O)[C@@H]5[C@H]([C@H](CN5C(=O)[C@@H](NC(=O)[C@@H](NC(=O)[C@@H]6C[C@H](CN6C(=O)[C@@H](NC4=O)[C@@H](C)O)O)[C@@H]([C@H](C7=CC=C(C=C7)O)O)O)[C@@H](C)O)C)O)OCC[N+](C)(C)C)O,PubChem,auto-fetched by name
+micafungin,CCCCCOC1=CC=C(C=C1)C2=CC(=NO2)C3=CC=C(C=C3)C(=O)N[C@H]4C[C@H]([C@H](NC(=O)[C@@H]5[C@H]([C@H](CN5C(=O)[C@@H](NC(=O)[C@@H](NC(=O)[C@@H]6C[C@H](CN6C(=O)[C@@H](NC4=O)[C@@H](C)O)O)[C@@H]([C@H](C7=CC(=C(C=C7)O)OS(=O)(=O)O)O)O)[C@@H](CC(=O)N)O)C)O)O)O,PubChem,auto-fetched by name
+anidulafungin,CCCCCOC1=CC=C(C=C1)C2=CC=C(C=C2)C3=CC=C(C=C3)C(=O)N[C@H]4C[C@H]([C@H](NC(=O)[C@@H]5[C@H]([C@H](CN5C(=O)[C@@H](NC(=O)[C@@H](NC(=O)[C@@H]6C[C@H](CN6C(=O)[C@@H](NC4=O)[C@@H](C)O)O)[C@@H]([C@H](C7=CC=C(C=C7)O)O)O)[C@@H](C)O)C)O)O)O,PubChem,auto-fetched by name
+caspofungin,CC[C@H](C)C[C@H](C)CCCCCCCCC(=O)N[C@H]1C[C@H]([C@H](NC(=O)[C@@H]2[C@H](CCN2C(=O)[C@@H](NC(=O)[C@@H](NC(=O)[C@@H]3C[C@H](CN3C(=O)[C@@H](NC1=O)[C@@H](C)O)O)[C@@H]([C@H](C4=CC=C(C=C4)O)O)O)[C@@H](CCN)O)O)NCCN)O,PubChem,auto-fetched by name
+poacic acid,COC1=CC(=CC(=C1O)/C=C/C2=CC(=C(C=C2)O)OC)/C=C/C(=O)O,PubChem,auto-fetched by name
+validamycin A,C1[C@@H]([C@H]([C@@H]([C@H]([C@H]1N[C@H]2C=C([C@H]([C@@H]([C@H]2O)O)O)CO)O)O)O[C@H]3[C@@H]([C@H]([C@@H]([C@H](O3)CO)O)O)O)CO,PubChem,auto-fetched by name
+validoxylamine A,C1[C@@H]([C@H]([C@@H]([C@H]([C@H]1N[C@H]2C=C([C@H]([C@@H]([C@H]2O)O)O)CO)O)O)O)CO,PubChem,auto-fetched by name
+acarbose,C[C@@H]1[C@H]([C@@H]([C@H]([C@H](O1)O[C@@H]2[C@H](O[C@@H]([C@@H]([C@H]2O)O)O[C@H]([C@@H](CO)O)[C@@H]([C@H](C=O)O)O)CO)O)O)N[C@H]3C=C([C@H]([C@@H]([C@H]3O)O)O)CO,PubChem,auto-fetched by name
+capsofungin,CCC(C)CC(C)CCCCCCCCC(=O)NC1C[C@H]([C@H](NC(=O)[C@@H]2[C@H](CCN2C(=O)[C@@H](NC(=O)[C@@H](NC(=O)[C@@H]3C[C@H](CN3C(=O)[C@@H](NC1=O)[C@@H](C)O)O)[C@@H]([C@H](C4=CC=C(C=C4)O)O)O)[C@@H](CCN)O)O)NCCN)O,PubChem,auto-fetched by name
+papulacandin B,CCC(C)CC/C=C/C=C(\C)/C(C/C=C/C=C/C(=O)O[C@H]1[C@@H]([C@H](O[C@]2([C@@H]1O)C3=C(CO2)C=C(C=C3O)O)CO)O[C@H]4[C@@H]([C@H]([C@H]([C@H](O4)COC(=O)/C=C/C=C/C=C/C(CC)O)O)O)O)O,PubChem,auto-fetched by name

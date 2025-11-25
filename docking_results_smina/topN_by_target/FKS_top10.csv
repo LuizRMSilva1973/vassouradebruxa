@@ -1,0 +1,2 @@
+rank,target,ligand,best_affinity_kcal_per_mol,mode,exhaustiveness,num_modes,center_x,center_y,center_z,size_x,size_y,size_z
+1,FKS,papulacandin B,-6.1,1,16,9,92.823,135.757,64.264,28.0,28.0,28.0

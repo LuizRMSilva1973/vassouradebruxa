@@ -1,0 +1,2 @@
+target,ligand,best_affinity_kcal_per_mol,mode,exhaustiveness,num_modes,center_x,center_y,center_z,size_x,size_y,size_z
+FKS_8WL6,poacic acid,-6.946,1,12,9,131.460,132.289,134.163,40,40,40

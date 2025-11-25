@@ -1,0 +1,5 @@
+#!/home/luiz/Área de trabalho/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/miniforge_clean/bin/python3.12
+
+from idlelib.pyshell import main
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,14 @@
+# Template de caixa de docking (substitua EXAMPLE pelo nome do alvo)
+# Edite os valores numéricos abaixo conforme o sítio ativo do alvo.
+# Formato: seis linhas com center_* e size_* usando ponto decimal.
+center_x=10.0
+center_y=15.0
+center_z=20.0
+size_x=20.0
+size_y=20.0
+size_z=20.0
+
+# Dica:
+# - O nome do arquivo deve corresponder ao nome do alvo: targets/<ALVO>.box
+# - Ex.: para targets/CHS.pdb -> crie targets/CHS.box
+# - Tamanhos (size_*) são em Å e devem cobrir o sítio ativo.

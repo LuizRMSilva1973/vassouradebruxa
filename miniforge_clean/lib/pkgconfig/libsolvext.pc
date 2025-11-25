@@ -1,0 +1,9 @@
+libdir=/home/luiz/Área de trabalho/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/miniforge_clean/lib
+includedir=/home/luiz/Área de trabalho/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/miniforge_clean/include
+
+Name: libsolvext
+Description: Library for reading repositories
+Version: 0.7.34
+Requires: libsolv
+Libs: -L${libdir} -lsolvext
+Cflags: -I${includedir}

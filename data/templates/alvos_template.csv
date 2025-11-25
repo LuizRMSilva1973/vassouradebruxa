@@ -1,0 +1,5 @@
+target_id,organism,uniprot_id,pdb_id,model_source,notes,box_file,center_x,center_y,center_z,size_x,size_y,size_z
+FKS_8WL6,Ceratobasidium theobromae,B2XSE6,8WL6,PDB,Domínio catalítico FKS; caixa inicial do sítio ativo,targets/FKS_8WL6.box,0,0,0,20,20,20
+FKS,Ceratobasidium theobromae,C0LT25,,AlphaFold,Modelo de membrana; ajustar caixa conforme cavidade,targets/FKS.box,0,0,0,20,20,20
+CHS,Ceratobasidium theobromae,CHS_like,,ColabFold,Planejar modelagem; definir sítio e caixa,targets/CHS.box,0,0,0,20,20,20
+

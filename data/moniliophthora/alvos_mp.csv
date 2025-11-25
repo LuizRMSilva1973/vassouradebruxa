@@ -1,0 +1,4 @@
+alvo,id_proteico,isoforma,genoma_ref,comprimento_aa,dominios_pfams,helices_tm,motivos_cataliticos,cofatores,comentarios,prioridade
+FKS, , , , ,FKS1_family, ,motivos conservados FKS, ,Moniliophthora perniciosa (vassoura-de-bruxa); ainda não localizado em UniProt (buscar por genoma/ortólogo),Alta
+CHS,C0LT25, , , ,PF01644|PF03142, ,QRRRW|DXH, ,UniProt C0LT25_MONPR (chitin synthase),Alta
+CHS,B2XSE6, , , ,PF01644|PF03142, ,QRRRW|DXH, ,UniProt B2XSE6_MONPR (chitin synthase),Alta

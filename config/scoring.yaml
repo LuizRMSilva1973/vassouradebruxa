@@ -1,0 +1,24 @@
+# Pesos e restrições padrão para score multiobjetivo
+# Ajuste conforme o seu objetivo experimental.
+
+weights:
+  # Afinidade (ΔG normalizada; mais negativo -> maior)
+  affinity: 0.35
+  # Seletividade (ΔΔG vs alvo de referência; mais negativo -> maior)
+  selectivity: 0.20
+  # Heurística de mobilidade xilemática (XyMove: logP, TPSA, MW, carga)
+  xymove: 0.25
+
+constraints:
+  # Requisitos mínimos (soft filter; coluna passes_constraints no CSV)
+  # Afinidade mínima desejada (kcal/mol): valores <= -7 prioritários
+  min_affinity_kcal_per_mol: -7.0
+  # Seletividade mínima (ΔΔG <= -1.0 sugere melhor que referência)
+  min_ddg_kcal_per_mol: -1.0
+  # Mobilidade xilemática mínima (0..1)
+  min_xymove: 0.60
+
+# Notas:
+# - A normalização de ΔG e ΔΔG é feita em tools/score_multiobjective.py.
+# - Recalibre estes valores após a primeira rodada completa de docking.
+# - Para usar seletividade, informe --ref-target ao rodar o score.

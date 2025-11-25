@@ -1,0 +1,6 @@
+ligand,target,best_affinity_kcal_per_mol,xymove,ddg_kcal_per_mol,score,passes_constraints
+anidulafungin,FKS,-5.800,0.473,NA,0.206,yes
+caspofungin,FKS,-5.800,0.280,NA,0.158,no
+micafungin,FKS,-7.100,0.203,NA,0.282,no
+papulacandin_B,FKS,-5.800,0.583,NA,0.234,yes
+rezafungin,FKS,-6.700,0.502,NA,0.313,yes

@@ -1,0 +1,5 @@
+target,ligand,engine,best_affinity_kcal_per_mol,mode,exhaustiveness,num_modes,center_x,center_y,center_z,size_x,size_y,size_z
+CHS,nikkomicinaZ,Vina,-9.049,1,12,9,-2.838,3.124,-4.767,30.000,30.000,30.000
+CHS,polioxinaD,Smina,-8.9,1,12,9,-2.838,3.124,-4.767,30.000,30.000,30.000
+FKS,polioxinaD,Smina,-5.967,1,12,9,92.823,135.757,64.264,28.000,28.000,28.000
+FKS,nikkomicinaZ,Vina,-5.680,1,12,9,92.823,135.757,64.264,28.000,28.000,28.000

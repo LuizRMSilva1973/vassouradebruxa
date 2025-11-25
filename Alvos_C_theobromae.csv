@@ -1,0 +1,6 @@
+Alvo,Função,Como localizar no proteoma,Prioridade
+CHS,"Quitina-sintase (síntese de quitina, esqueleto de parede)",PF01644 / PF03142; motivo QRRRW; multipasse,Alta
+FKS,"β-1,3-glucano-sintase (síntese estrutural de glucano)",BLASTP contra FKS1/FKS2 (Basidiomycota); multipasse,Alta
+AGS,"α-1,3-glucano-sintase (arquitetura/adesão de parede)",BLASTP contra AGS fúngicos; GT multipasse,Média
+GEL/GAS,Glucanosiltransferases (remodelagem/maturação de parede),Domínios GEL/GAS característicos,Suporte
+CDA,Quitina-desacetilases (modificação estrutural de quitina),Domínios CDA; GO: chitin deacetylase activity,Suporte

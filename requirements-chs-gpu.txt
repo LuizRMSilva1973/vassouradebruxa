@@ -1,0 +1,17 @@
+# CUDA 12.1 stack (adjust if your GPU uses another CUDA)
+--index-url https://download.pytorch.org/whl/cu121
+torch
+torchvision
+torchaudio
+
+# ESMFold stack
+git+https://github.com/facebookresearch/esm.git
+einops
+biopython
+
+# OpenFold (imported indirectly by esm/esmfold)
+git+https://github.com/aqlaboratory/openfold.git@main
+
+regex
+numpy
+

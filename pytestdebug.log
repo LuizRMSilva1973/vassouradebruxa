@@ -1,0 +1,7 @@
+versions pytest-7.4.4, python-3.12.3.final.0
+cwd=/media/luiz/Novo volume/MEGA1/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA
+args=('--version', '--debug')
+
+  pytest_cmdline_main [hook]
+      config: <_pytest.config.Config object at 0x7c45050251c0>
+  finish pytest_cmdline_main --> 0 [hook]

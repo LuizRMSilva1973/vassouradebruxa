@@ -1,0 +1,61 @@
+{
+  "paths": [
+    {
+      "_path": "include/simdjson.h",
+      "path_type": "hardlink",
+      "sha256": "d930dbc24ecba8fb7fcba534e1932375964bb2fab82a396d3b810b42968c1863",
+      "size_in_bytes": 5270833
+    },
+    {
+      "_path": "lib/cmake/simdjson/simdjson-config-version.cmake",
+      "path_type": "hardlink",
+      "sha256": "bc28ea8d53a3dd7c137282faf702d62cf857e09adb0ec19ce7447de35ed3eb23",
+      "size_in_bytes": 3678
+    },
+    {
+      "_path": "lib/cmake/simdjson/simdjson-config.cmake",
+      "path_type": "hardlink",
+      "sha256": "7112e60de69e538cfa37bccf32295cd0bddfe1618226e08b2cdabbdbe006ca79",
+      "size_in_bytes": 213
+    },
+    {
+      "_path": "lib/cmake/simdjson/simdjsonTargets-release.cmake",
+      "path_type": "hardlink",
+      "sha256": "d14663b8bc8cf48aca4d354715a0e8c52678454bcbcb1c286cab5543cddc6358",
+      "size_in_bytes": 879
+    },
+    {
+      "_path": "lib/cmake/simdjson/simdjsonTargets.cmake",
+      "path_type": "hardlink",
+      "sha256": "80e6b14b9ea8e871cb295940465af897246df8a88a29fb2b99588676f15bd09b",
+      "size_in_bytes": 4287
+    },
+    {
+      "_path": "lib/libsimdjson.so",
+      "path_type": "softlink",
+      "sha256": "b2fae65829ac0701769882a6a46762e01c305d8a77533a2ad33644810903a7fa",
+      "size_in_bytes": 221736
+    },
+    {
+      "_path": "lib/libsimdjson.so.25",
+      "path_type": "softlink",
+      "sha256": "b2fae65829ac0701769882a6a46762e01c305d8a77533a2ad33644810903a7fa",
+      "size_in_bytes": 221736
+    },
+    {
+      "_path": "lib/libsimdjson.so.25.0.0",
+      "path_type": "hardlink",
+      "sha256": "b2fae65829ac0701769882a6a46762e01c305d8a77533a2ad33644810903a7fa",
+      "size_in_bytes": 221736
+    },
+    {
+      "_path": "lib/pkgconfig/simdjson.pc",
+      "file_mode": "text",
+      "path_type": "hardlink",
+      "prefix_placeholder": "/home/conda/feedstock_root/build_artifacts/simdjson-split_1743695957371/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+      "sha256": "fb1fa03216325848051dc4fe652e00736997d7609e5332cfe48739e9cb14331a",
+      "size_in_bytes": 527
+    }
+  ],
+  "paths_version": 1
+}

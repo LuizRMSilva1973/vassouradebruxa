@@ -1,0 +1,7 @@
+#!/home/luiz/Área de trabalho/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/miniforge_clean/bin/python
+# -*- coding: utf-8 -*-
+import sys
+
+if __name__ == '__main__':
+    from conda_env.cli.main import main
+    sys.exit(main())

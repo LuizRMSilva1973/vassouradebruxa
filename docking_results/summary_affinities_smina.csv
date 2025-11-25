@@ -1,0 +1,6 @@
+target,ligand,best_affinity_kcal_per_mol,mode,exhaustiveness,num_modes,center_x,center_y,center_z,size_x,size_y,size_z
+FKS,anidulafungin,-5.800,1,,,,,,,,
+FKS,caspofungin,-5.800,1,,,,,,,,
+FKS,micafungin,-7.100,1,,,,,,,,
+FKS,papulacandin_B,-5.800,1,,,,,,,,
+FKS,rezafungin,-6.700,1,,,,,,,,

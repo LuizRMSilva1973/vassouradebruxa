@@ -1,0 +1,8 @@
+libdir=/home/luiz/Área de trabalho/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/miniforge_clean/lib
+includedir=/home/luiz/Área de trabalho/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/miniforge_clean/include
+
+Name: libsolv
+Description: Library for solving packages
+Version: 0.7.34
+Libs: -L${libdir} -lsolv
+Cflags: -I${includedir}

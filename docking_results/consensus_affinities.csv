@@ -1,0 +1,19 @@
+target,ligand,best_affinity_kcal_per_mol,mode,exhaustiveness,num_modes,center_x,center_y,center_z,size_x,size_y,size_z
+FKS,anidulafungin,-5.447,1,2,,92.823,135.757,64.264,28,28,28
+FKS,caspofungin,-5.389,1,1,,92.823,135.757,64.264,28,28,28
+FKS,ibrexafungerp,-5.955,1,4,,92.823,135.757,64.264,28,28,28
+FKS,micafungin,-6.646,1,1,,92.823,135.757,64.264,28,28,28
+FKS,nikkomycin X,-5.950,1,4,,92.823,135.757,64.264,28,28,28
+FKS,papulacandin B,-6.100,1,,,,,,,,
+FKS,papulacandin_B,-5.800,1,,,,,,,,
+FKS,poacic acid,-5.570,1,4,,92.823,135.757,64.264,28,28,28
+FKS,rezafungin,-6.267,1,1,,92.823,135.757,64.264,28,28,28
+FKS_8WL6,anidulafungin,0.000,1,,,,,,,,
+FKS_8WL6,caspofungin,0.000,1,8,,92.823,135.757,64.264,28,28,28
+FKS_8WL6,ibrexafungerp,0.000,1,4,,92.823,135.757,64.264,28,28,28
+FKS_8WL6,micafungin,0.000,1,4,,92.823,135.757,64.264,28,28,28
+FKS_8WL6,nikkomycin X,0.000,1,4,,92.823,135.757,64.264,28,28,28
+FKS_8WL6,papulacandin B,0.000,1,,,,,,,,
+FKS_8WL6,papulacandin_B,0.000,1,4,,92.823,135.757,64.264,28,28,28
+FKS_8WL6,poacic acid,0.000,1,4,,92.823,135.757,64.264,28,28,28
+FKS_8WL6,rezafungin,0.000,1,4,,92.823,135.757,64.264,28,28,28

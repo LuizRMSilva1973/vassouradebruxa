@@ -1,0 +1,50 @@
+# This file created by conda-build 25.5.0
+# ------------------------------------------------
+
+package:
+  name: libstdcxx
+  version: 15.1.0
+source:
+  - url: https://ftp.gnu.org/gnu/gcc/gcc-15.1.0/gcc-15.1.0.tar.gz
+    sha256: 51b9919ea69c980d7a381db95d4be27edf73b21254eb13d752a08003b4d013b1
+    patches:
+      - patches/0001-allow-commands-in-main-specfile.patch
+      - patches/0002-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch
+      - patches/0003-add-ldl-to-libstdc___la_LDFLAGS.patch
+      - patches/0004-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch
+build:
+  number: 3
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  string: h8f9b012_3
+requirements:
+  host:
+    - kernel-headers_linux-64 3.10.0 he581ecd_18
+    - libgcc 15.1.0 h767d61c_3
+    - sysroot_linux-64 2.17 hb09d241_18
+    - tzdata 2025b h78e105d_0
+  run:
+    - __glibc >=2.17,<3.0.a0
+    - libgcc 15.1.0 h767d61c_3
+  run_contrained:
+    - libstdcxx-ng ==15.1.0=*_3
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libstdc++.so
+about:
+  summary: The GNU C++ Runtime Library
+  home: https://gcc.gnu.org/
+  license: GPL-3.0-only WITH GCC-exception-3.1
+extra:
+  feedstock-name: ctng-compilers-feedstock
+  recipe-maintainers:
+    - beckermr
+    - isuruf
+    - timsnyder
+    - xhochy
+  final: true
+  copy_test_source_files: true
+  flow_run_id: azure_20250624.6.1
+  remote_url: https://github.com/conda-forge/ctng-compilers-feedstock
+  sha: 5261abc32ff4711959b32dcebe7e60cba42e3441

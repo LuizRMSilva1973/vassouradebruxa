@@ -1,0 +1,24 @@
+# CHS series
+nikkomycin Z
+nikkomycin X
+polyoxin D
+polyoxin B
+
+# FKS series
+ibrexafungerp
+enfumafungin
+rezafungin
+micafungin
+anidulafungin
+caspofungin
+
+# Exploratory (cell-wall relevant or adjacent)
+mycafungin
+poacic acid
+validamycin A
+validoxylamine A
+acarbose
+tunicamycin
+capsofungin
+papulacandin B
+arpornolide

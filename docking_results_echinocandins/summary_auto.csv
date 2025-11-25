@@ -1,0 +1,18 @@
+ligand,error,sdf
+acarbose,"data must be str, not tuple",/mnt/dados/MEGABACKUP/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/ligands/acarbose.sdf
+anidulafungin,"data must be str, not tuple",/mnt/dados/MEGABACKUP/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/ligands/anidulafungin.sdf
+capsofungin,"data must be str, not tuple",/mnt/dados/MEGABACKUP/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/ligands/capsofungin.sdf
+caspofungin,"data must be str, not tuple",/mnt/dados/MEGABACKUP/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/ligands/caspofungin.sdf
+caspofungina,"data must be str, not tuple",/mnt/dados/MEGABACKUP/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/ligands/caspofungina.sdf
+enfumafungin,"data must be str, not tuple",/mnt/dados/MEGABACKUP/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/ligands/enfumafungin.sdf
+ibrexafungerp,"data must be str, not tuple",/mnt/dados/MEGABACKUP/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/ligands/ibrexafungerp.sdf
+micafungin,"data must be str, not tuple",/mnt/dados/MEGABACKUP/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/ligands/micafungin.sdf
+nikkomicinaZ,"data must be str, not tuple",/mnt/dados/MEGABACKUP/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/ligands/nikkomicinaZ.sdf
+nikkomicinaZ_pubchem,"data must be str, not tuple",/mnt/dados/MEGABACKUP/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/ligands/nikkomicinaZ_pubchem.sdf
+nikkomycin_X,"data must be str, not tuple",/mnt/dados/MEGABACKUP/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/ligands/nikkomycin X.sdf
+nikkomycin_Z,"data must be str, not tuple",/mnt/dados/MEGABACKUP/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/ligands/nikkomycin Z.sdf
+papulacandin_B,"data must be str, not tuple",/mnt/dados/MEGABACKUP/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/ligands/papulacandin B.sdf
+poacic_acid,"data must be str, not tuple",/mnt/dados/MEGABACKUP/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/ligands/poacic acid.sdf
+rezafungin,"data must be str, not tuple",/mnt/dados/MEGABACKUP/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/ligands/rezafungin.sdf
+validamycin_A,"data must be str, not tuple",/mnt/dados/MEGABACKUP/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/ligands/validamycin A.sdf
+validoxylamine_A,"data must be str, not tuple",/mnt/dados/MEGABACKUP/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/ligands/validoxylamine A.sdf

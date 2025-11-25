@@ -1,0 +1,44 @@
+# This file created by conda-build 25.5.0
+# ------------------------------------------------
+
+package:
+  name: libstdcxx-ng
+  version: 15.1.0
+source:
+  - url: https://ftp.gnu.org/gnu/gcc/gcc-15.1.0/gcc-15.1.0.tar.gz
+    sha256: 51b9919ea69c980d7a381db95d4be27edf73b21254eb13d752a08003b4d013b1
+    patches:
+      - patches/0001-allow-commands-in-main-specfile.patch
+      - patches/0002-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch
+      - patches/0003-add-ldl-to-libstdc___la_LDFLAGS.patch
+      - patches/0004-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch
+build:
+  number: 3
+  run_exports:
+    strong:
+      - libstdcxx
+  string: h4852527_3
+requirements:
+  host:
+    - libstdcxx 15.1.0 h8f9b012_3
+  run:
+    - libstdcxx 15.1.0 h8f9b012_3
+test:
+  commands:
+    - echo "empty wrapper for compatibility with previous naming"
+about:
+  summary: The GNU C++ Runtime Library
+  home: https://gcc.gnu.org/
+  license: GPL-3.0-only WITH GCC-exception-3.1
+extra:
+  feedstock-name: ctng-compilers-feedstock
+  recipe-maintainers:
+    - beckermr
+    - isuruf
+    - timsnyder
+    - xhochy
+  final: true
+  copy_test_source_files: true
+  flow_run_id: azure_20250624.6.1
+  remote_url: https://github.com/conda-forge/ctng-compilers-feedstock
+  sha: 5261abc32ff4711959b32dcebe7e60cba42e3441
