@@ -18,13 +18,13 @@ AutoDock Vina v1.2.5
 #################################################################
 
 Scoring function : vina
-Rigid receptor: /home/luiz/Área de trabalho/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/targets/FKS_8WL6.pdbqt
-Ligand: /home/luiz/Área de trabalho/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/ligands/micafungin.pdbqt
+Rigid receptor: targets/FKS_8WL6.pdbqt
+Ligand: ligands/micafungin.pdbqt
 Grid center: X 131.46 Y 132.289 Z 134.163
 Grid size  : X 40 Y 40 Z 40
 Grid space : 0.375
 Exhaustiveness: 16
-CPU: 1
+CPU: 0
 Verbosity: 1
 
 

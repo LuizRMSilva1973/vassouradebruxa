@@ -1,5 +1,1 @@
 ligand,target,best_affinity_kcal_per_mol,xymove,ddg_kcal_per_mol,score,passes_constraints
-micafungin,FKS,-7.1,0.203,-7.100,0.482,no
-papulacandin B,FKS,-6.1,0.583,-6.100,0.467,yes
-poacic acid,FKS,-5.57,0.897,-5.570,0.487,yes
-rezafungin,FKS,-6.7,0.502,-6.700,0.513,yes

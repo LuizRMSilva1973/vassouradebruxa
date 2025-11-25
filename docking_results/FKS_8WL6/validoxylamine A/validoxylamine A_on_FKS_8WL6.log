@@ -18,17 +18,18 @@ AutoDock Vina v1.2.5
 #################################################################
 
 Scoring function : vina
-Rigid receptor: /home/luiz/Área de trabalho/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/targets/FKS_8WL6.pdbqt
-Ligand: /home/luiz/Área de trabalho/EMPRESAS/UNISAGRADO/PESQUISAS/VASSOURA DE BRUXA/ligands/validoxylamine A.pdbqt
-Grid center: X 92.823 Y 135.757 Z 64.264
-Grid size  : X 28 Y 28 Z 28
+Rigid receptor: targets/FKS_8WL6.pdbqt
+Ligand: ligands/validoxylamine A.pdbqt
+Grid center: X 131.46 Y 132.289 Z 134.163
+Grid size  : X 40 Y 40 Z 40
 Grid space : 0.375
 Exhaustiveness: 16
 CPU: 0
 Verbosity: 1
 
+WARNING: Search space volume is greater than 27000 Angstrom^3 (See FAQ)
 Computing Vina grid ... done.
-Performing docking (random seed: 1166083796) ... 
+Performing docking (random seed: -1777974212) ... 
 0%   10   20   30   40   50   60   70   80   90   100%
 |----|----|----|----|----|----|----|----|----|----|
 ***************************************************
@@ -36,12 +37,12 @@ Performing docking (random seed: 1166083796) ...
 mode |   affinity | dist from best mode
      | (kcal/mol) | rmsd l.b.| rmsd u.b.
 -----+------------+----------+----------
-   1            0          0          0
-   2     5.83e-05      3.776      6.418
-   3     5.83e-05      5.627      8.341
-   4    5.865e-05      9.427      11.37
-   5    5.873e-05      9.253      12.54
-   6    5.987e-05      15.71      18.79
-   7    6.365e-05      6.533      9.066
-   8    6.466e-05      7.262       11.2
-   9    7.078e-05      9.812      11.85
+   1       -7.363          0          0
+   2       -6.242      17.92      20.67
+   3       -6.129      17.51      19.68
+   4        -6.11      23.73      26.83
+   5       -6.003      18.54      21.22
+   6        -5.92      23.64      26.56
+   7       -5.897      17.46      20.32
+   8       -5.875      23.79      26.65
+   9       -5.857      18.95      21.85

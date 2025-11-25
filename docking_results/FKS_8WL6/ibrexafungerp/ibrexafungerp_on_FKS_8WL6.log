@@ -23,7 +23,7 @@ Ligand: ligands/ibrexafungerp.pdbqt
 Grid center: X 131.46 Y 132.289 Z 134.163
 Grid size  : X 40 Y 40 Z 40
 Grid space : 0.375
-Exhaustiveness: 8
+Exhaustiveness: 16
 CPU: 0
 Verbosity: 1
 
