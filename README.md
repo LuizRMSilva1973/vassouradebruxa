@@ -215,3 +215,5 @@ Estado e Progresso
 - AutoDock Vina 1.2.x
 - OpenBabel
 - MGLTools (opcional)
+
+> Observação: os instaladores grandes do Miniforge não são versionados para manter o repositório leve. Baixe o Miniforge direto da Conda-Forge (`https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh`) antes de rodar o script de instalação, se necessário.
