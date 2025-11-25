@@ -1,7 +1,29 @@
+# Artefatos grandes e documentos
+*.pdf
+*.docx
+*.odt
+*.xlsx
+*.tar.gz
+
+# Ambientes e caches
 __pycache__/
 .pytest_cache/
+.venv/
+venv/
 .vscode/
 .idea/
+
+# Resultados e arquivos gerados
+docking_results/
+md_results/
+
+# Dados volumosos (ajuste conforme necessário)
+targets/*.pdb
+ligands/*
+
+# Sistemas
+.DS_Store
+Thumbs.db
 
 # Large installers (exceed GitHub 100MB limit)
 mgltools_x86_64Linux2_1.5.7p1.tar.gz
